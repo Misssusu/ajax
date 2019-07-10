@@ -1,13 +1,12 @@
-window.jQuery = {};
-jQuery.ajax = function (url, method, body, success, fail) {
+window.jQuery.ajax = function (url, method, body, success, fail) {
     let request = new XMLHttpRequest()
     request.open(method, url)
     request.send(body)
     request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {
-            success(request)
+            success.call(undefined,request)
         } else if (request.readyState >= 400) {
-            fail()
+            fail.call(undefined,request)
         }
     }
 }
